@@ -1,6 +1,14 @@
+import { connectionDB } from "./config/connectionDB";
 import { PORT } from "./config/envs";
-import { server as app } from "./server";
+import { app } from "./app";
 
-app.listen(PORT, () => {
-  console.log(`Escuchando peticiones en http://localhost:${PORT}`);
-});
+connectionDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Escuchando peticiones en http://localhost:${PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error("Error al conectar a la base de datos:", error);
+    process.exit(1);
+  });

@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { IMeal } from "../interfaces/meals";
+import { IMeal } from "../interfaces/meals.interface";
 
 const mealSchema = new Schema<IMeal>({
   name: { type: String, required: true },
@@ -8,4 +8,4 @@ const mealSchema = new Schema<IMeal>({
   category: { type: String, required: true },
 });
 
-export const mealModel = model<IMeal>("Meal", mealSchema);
+export const Meal = model<IMeal>("Meal", mealSchema);

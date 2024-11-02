@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { CreateMealDto } from "../../dtos/meal/createMeals.dto";
 import { createMealService } from "../../services/meal/postMeal.service";
-import { IMeal } from "../../interfaces/meals";
 
 export const createMealController = async (
   req: Request,

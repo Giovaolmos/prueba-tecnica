@@ -5,8 +5,17 @@ import {
   getAllMealsController,
   getMealByIdController,
 } from "../controller/meal/getsMeals.controller";
+import { validateMealUpdate } from "../middlewares/updateMeal.middleware";
+import { validateIdMiddleware } from "../middlewares/validateId.middleware";
+import { updateMealController } from "../controller/meal/updateMeals.controller";
 
 export const mealsRouter = Router();
 mealsRouter.post("/post", validateMealData, createMealController);
 mealsRouter.get("/", getAllMealsController);
-mealsRouter.get("/:id", getMealByIdController);
+mealsRouter.get("/:id", validateIdMiddleware, getMealByIdController);
+mealsRouter.put(
+  "/put/:id",
+  validateIdMiddleware,
+  validateMealUpdate,
+  updateMealController,
+);

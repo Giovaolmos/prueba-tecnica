@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { IMeal } from "../interfaces/meals";
+import { IMeal } from "../../interfaces/meals";
 export const validateMealUpdate = (
   req: Request,
   res: Response,

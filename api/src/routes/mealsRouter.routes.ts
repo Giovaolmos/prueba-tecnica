@@ -1,12 +1,12 @@
 import { Router } from "express";
 import { createMealController } from "../controller/meal/createMeals.controller";
-import { validateMealData } from "../middlewares/createMeal.middleware";
+import { validateMealData } from "../middlewares/meal/createMeal.middleware";
 import {
   getAllMealsController,
   getMealByIdController,
 } from "../controller/meal/getsMeals.controller";
-import { validateMealUpdate } from "../middlewares/updateMeal.middleware";
-import { validateIdMiddleware } from "../middlewares/validateId.middleware";
+import { validateMealUpdate } from "../middlewares/meal/updateMeal.middleware";
+import { validateIdMiddleware } from "../middlewares/meal/validateId.middleware";
 import { updateMealController } from "../controller/meal/updateMeals.controller";
 import { deleteMealController } from "../controller/meal/deleteMeals.controller";
 

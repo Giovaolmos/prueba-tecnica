@@ -2,5 +2,5 @@ export interface createUserDto {
   name: string;
   email: string;
   password: string;
-  isAdmin: false;
+  confirmPassword: string;
 }

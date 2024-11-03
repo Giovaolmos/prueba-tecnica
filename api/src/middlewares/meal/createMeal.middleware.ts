@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { CreateMealDto } from "../dtos/meal/createMeals.dto";
+import { CreateMealDto } from "../../dtos/meal/createMeals.dto";
 
 export const validateMealData = (
   req: Request,

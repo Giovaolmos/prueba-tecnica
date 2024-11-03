@@ -6,5 +6,5 @@ export const createMealService = async (
   mealData: CreateMealDto,
 ): Promise<IMeal> => {
   const newMeal = await Meal.create(mealData);
-  return newMeal.save();
+  return newMeal;
 };

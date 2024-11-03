@@ -6,6 +6,10 @@ import { Users } from "../../models/user";
 export const createUserService = async (
   userData: createUserDto,
 ): Promise<IUser> => {
+  const userDB = await Users.findOne({ email: userData.email });
+  if (userDB) {
+    throw new Error("El email ya está en uso");
+  }
   const encryptedPassword = encryptPassword(userData.password);
   userData.password = encryptedPassword;
   const newUser = await Users.create(userData);

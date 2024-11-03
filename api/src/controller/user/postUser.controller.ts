@@ -12,6 +12,7 @@ export const createUserController = async (
 
     const newUserResponse = newUser.toObject();
     delete newUserResponse.isAdmin;
+    delete newUserResponse.password;
     res.status(201).json(newUserResponse);
   } catch (error) {
     res.status(500).json({

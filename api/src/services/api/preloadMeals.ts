@@ -7,7 +7,7 @@ export const preLoadMeals = async (): Promise<void> => {
   try {
     const mealsDB = await Meal.find();
     if (mealsDB.length > 0) {
-      console.log("No se requiere precarga.");
+      console.log("No se requiere precarga de comidas.");
       return;
     }
 

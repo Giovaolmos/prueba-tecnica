@@ -8,6 +8,7 @@ import {
 import { validateMealUpdate } from "../middlewares/updateMeal.middleware";
 import { validateIdMiddleware } from "../middlewares/validateId.middleware";
 import { updateMealController } from "../controller/meal/updateMeals.controller";
+import { deleteMealController } from "../controller/meal/deleteMeals.controller";
 
 export const mealsRouter = Router();
 mealsRouter.post("/post", validateMealData, createMealController);
@@ -19,3 +20,4 @@ mealsRouter.put(
   validateMealUpdate,
   updateMealController,
 );
+mealsRouter.delete("/delete/:id", validateIdMiddleware, deleteMealController);

@@ -7,9 +7,9 @@ export const swaggerConfig = (app: Express) => {
     definition: {
       openapi: "3.0.0",
       info: {
-        title: "Prueba Técnica",
+        title: "The meal DB",
         version: "1.0.0",
-        description: "Este es un proyecto para una prueba técnica.",
+        description: "Esta es una API restful basada en la themealdb",
       },
       servers: [
         {
@@ -17,7 +17,7 @@ export const swaggerConfig = (app: Express) => {
         },
       ],
     },
-    apis: ["./src/routes/*.ts", "./src/controllers/*.ts"],
+    apis: ["./src/routes/**/*.ts", "./src/models/*.ts"],
   };
 
   const swaggerDocs = swaggerJsDoc(options);

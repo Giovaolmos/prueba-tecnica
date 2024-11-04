@@ -11,7 +11,7 @@ export const getAllMealsController = async (req: Request, res: Response) => {
   const mealsDB = await getMealsService(page, limit);
 
   if (mealsDB.length === 0) {
-    res.status(204).json({ message: "No se encontraron comidas" });
+    res.status(404).json({ message: "No se encontraron comidas" });
   } else {
     res.status(200).json({
       data: mealsDB,

@@ -11,7 +11,7 @@ import { Schema, model } from "mongoose";
  *           type: string
  *           minLength: 2
  *           maxLength: 50
- *           example: "Juan Pérez"
+ *           example: "User Example"
  *         email:
  *           type: string
  *           format: email
@@ -24,7 +24,6 @@ import { Schema, model } from "mongoose";
  *         isAdmin:
  *           type: boolean
  *           default: false
- *           example: false
  *       required:
  *         - name
  *         - email

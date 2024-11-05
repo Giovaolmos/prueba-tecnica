@@ -35,7 +35,7 @@ import { Schema, model } from "mongoose";
 
 const mealSchema = new Schema({
   name: { type: String, required: true, minlength: 2, maxlength: 50 },
-  description: { type: String, required: true, minlength: 10, maxlength: 2500 },
+  description: { type: String, required: true, maxlength: 2500 },
   imageUrl: { type: String, required: true, maxlength: 200 },
   category: { type: String, required: true, maxlength: 40 },
 });

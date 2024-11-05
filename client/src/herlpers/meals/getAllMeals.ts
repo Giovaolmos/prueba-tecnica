@@ -1,6 +1,6 @@
 import axios from "axios";
-
-export const URL_MEALS = "http://localhost:3000/meals";
+const URL_BACKEND = import.meta.env.VITE_BACK_URL;
+export const URL_MEALS = `${URL_BACKEND}/meals`;
 
 export const getAllMeals = async (page = 1, limit = 12) => {
   try {

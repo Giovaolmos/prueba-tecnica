@@ -46,7 +46,7 @@ export const LoginForm = () => {
           <div className="flex items-center justify-between mb-4">
             <a
               href="#"
-              className="text-xs text-indigo-500 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="text-xs text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Create Account
             </a>

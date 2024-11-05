@@ -8,9 +8,13 @@ export const login = async (email: string, password: string) => {
       email,
       password,
     });
-    console.log(response.data);
+
     return response.data;
   } catch (error: any) {
-    return error.response?.data?.message;
+    return {
+      message:
+        error.response?.data?.message ||
+        "Error en el inicio de sesión. Por favor, intenta nuevamente.",
+    };
   }
 };

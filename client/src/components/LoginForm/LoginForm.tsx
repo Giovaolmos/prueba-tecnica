@@ -5,7 +5,6 @@ import { login } from "../../herlpers/user/login";
 export const LoginForm = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
@@ -15,13 +14,15 @@ export const LoginForm = () => {
 
     try {
       const result = await login(email, password);
-      if (!result) {
-        setError(result.message || "Error en el inicio de sesión.");
+      if (!result || !result.token) {
+        const message = result.message || "Error en el inicio de sesión.";
+        setError(message);
       } else {
         localStorage.setItem("token", result.token);
         navigate("/");
       }
     } catch (error) {
+      console.error("Error en el inicio de sesión:", error);
       setError("Error en el inicio de sesión. Por favor, intenta nuevamente.");
     }
   };

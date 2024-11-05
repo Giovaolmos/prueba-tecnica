@@ -37,6 +37,14 @@ Las tecnologías que utilicé para este proyecto fueron:
 ### Como usuario administrador:
 - Permiso para agregar, editar o eliminar comidas existentes.
 
+## Requerimientos de Node.js
+
+Este proyecto fue desarrollado bajo la versión **21.7.0** de Node.js. Es necesario tener esta versión instalada, ya que incorpora la funcionalidad para importar variables de entorno a través de:
+
+```javascript
+process.loadEnvFile();
+```
+
 ## Instrucciones para iniciar el proyecto:
 
 

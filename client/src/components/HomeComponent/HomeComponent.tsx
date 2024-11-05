@@ -94,7 +94,7 @@ export const HomeComponent = () => {
           className={`px-4 py-2 rounded ${
             page === 1
               ? "bg-blue-200 cursor-not-allowed"
-              : "bg-blue-500 hover:bg-blue-600"
+              : "bg-slate-800 hover:bg-slate-700"
           }`}
         >
           Previous Page
@@ -108,7 +108,7 @@ export const HomeComponent = () => {
           className={`px-4 py-2 rounded ${
             page >= Math.ceil(totalMeals / limit)
               ? "bg-blue-200 cursor-not-allowed"
-              : "bg-blue-500 hover:bg-blue-600"
+              : "bg-slate-800 hover:bg-slate-700"
           }`}
         >
           Next Page

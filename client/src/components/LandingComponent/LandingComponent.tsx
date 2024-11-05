@@ -9,16 +9,18 @@ export const LandingComponent: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center  text-white p-4">
+    <div className="flex flex-col items-center justify-center h-screen text-white p-4">
       <div className="max-w-lg text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Recibia!</h1>
-        <p className="text-lg mb-6">
+        <h1 className="text-4xl font-bold mb-4 text-slate-700">
+          WELCOME TO THE MEAL DB!
+        </h1>
+        <p className="text-lg mb-6 font-semibold">
           Discover delicious recipes and cooking inspiration. Log in to access
           all our exclusive recipes tailored just for you!
         </p>
         <button
           onClick={handleLogin}
-          className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-full shadow-md hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="px-6 py-3 font-semibold bg-slate-500 text-white rounded hover:bg-slate-600 object-contain"
         >
           Log in to view recipes
         </button>

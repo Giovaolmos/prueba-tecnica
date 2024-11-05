@@ -1,4 +1,5 @@
 import { Users } from "../../models/user";
+import { encryptPassword } from "../../middlewares/user/encryptPassword.middleware";
 
 export const preLoadUserTest = async (): Promise<void> => {
   try {
@@ -14,6 +15,9 @@ export const preLoadUserTest = async (): Promise<void> => {
       password: "password123",
       isAdmin: true,
     };
+
+    userTest.password = encryptPassword(userTest.password);
+
     await Users.create(userTest);
     console.log("Usuario Test precargado correctamente.");
   } catch (error) {

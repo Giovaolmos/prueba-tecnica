@@ -12,7 +12,7 @@ export const NavBar: React.FC = () => {
           <div className="hidden lg:flex ml-auto">
             <ul className="flex gap-4 items-center cursor-pointer">
               <li>
-                <Link to="/" className="text-white hover:text-slate-300">
+                <Link to="/home" className="text-white hover:text-slate-300">
                   Home
                 </Link>
               </li>
@@ -44,7 +44,7 @@ export const NavBar: React.FC = () => {
         <div className="lg:hidden bg-slate-800 text-white p-4">
           <ul className="flex flex-col gap-2">
             <li>
-              <Link to="/" className="text-white hover:text-slate-300">
+              <Link to="/home" className="text-white hover:text-slate-300">
                 Home
               </Link>
             </li>

@@ -52,7 +52,7 @@ export const HomeComponent = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="min-h-screen  container mx-auto p-4">
       <h1 className="text-4xl font-bold mb-4 text-center text-slate-700">
         MEALS LIST
       </h1>
@@ -87,7 +87,6 @@ export const HomeComponent = () => {
         ))}
       </div>
 
-      {/* Controles de paginación */}
       <div className="flex justify-between mt-4 text-white">
         <button
           onClick={handlePreviousPage}
@@ -116,7 +115,6 @@ export const HomeComponent = () => {
         </button>
       </div>
 
-      {/* Modal */}
       {isModalOpen && selectedMeal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
           <div className="bg-slate-500 rounded-lg p-6 w-full max-w-2xl text-center relative">

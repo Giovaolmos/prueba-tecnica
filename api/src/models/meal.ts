@@ -14,7 +14,6 @@ import { Schema, model } from "mongoose";
  *           example: "Eton Mess"
  *         description:
  *           type: string
- *           minLength: 10
  *           maxLength: 2500
  *           example: "Purée half the strawberries in a blender. Chop the remaining strawberries, reserving four for decoration.\r\nWhip the double cream until stiff peaks form, then fold in the strawberry purée and crushed meringue. Fold in the chopped strawberries and ginger cordial, if using.\r\nSpoon equal amounts of the mixture into four cold wine glasses. Serve garnished with the remaining strawberries and a sprig of mint."
  *         imageUrl:

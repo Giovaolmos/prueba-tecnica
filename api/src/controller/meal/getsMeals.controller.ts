@@ -6,17 +6,18 @@ import {
 
 export const getAllMealsController = async (req: Request, res: Response) => {
   const page = parseInt(req.query.page as string) || 1;
-  const limit = parseInt(req.query.limit as string) || 10;
+  const limit = parseInt(req.query.limit as string) || 12;
 
-  const mealsDB = await getMealsService(page, limit);
+  const { meals, totalMeals } = await getMealsService(page, limit);
 
-  if (mealsDB.length === 0) {
+  if (meals.length === 0) {
     res.status(404).json({ message: "No se encontraron comidas" });
   } else {
     res.status(200).json({
-      data: mealsDB,
+      data: meals,
       page,
       limit,
+      totalMeals,
     });
   }
 };

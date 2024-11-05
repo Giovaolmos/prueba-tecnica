@@ -7,18 +7,22 @@ export const HomeComponent = () => {
   const [meals, setMeals] = useState<IMeals[]>([]);
   const [selectedMeal, setSelectedMeal] = useState<IMeals | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalMeals, setTotalMeals] = useState(0);
+  const limit = 12;
 
   useEffect(() => {
     const fetchMeals = async () => {
       try {
-        const mealsDB = await getAllMeals();
-        setMeals(mealsDB);
+        const { meals, totalMeals } = await getAllMeals(page, limit);
+        setMeals(meals);
+        setTotalMeals(totalMeals);
       } catch (error) {
         console.error(`Error al cargar las comidas: ${error}`);
       }
     };
     fetchMeals();
-  }, []);
+  }, [page]);
 
   const handleViewDetails = async (id: string) => {
     try {
@@ -35,9 +39,21 @@ export const HomeComponent = () => {
     setIsModalOpen(false);
   };
 
+  const handleNextPage = () => {
+    if (page < Math.ceil(totalMeals / limit)) {
+      setPage(page + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-4">Lista de Comidas</h1>
+      <h1 className="text-4xl font-bold mb-4">Meals list</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {meals.map((meal) => (
           <div
@@ -45,30 +61,60 @@ export const HomeComponent = () => {
             className="bg-slate-800 rounded-lg shadow-md p-4 flex flex-col justify-between"
           >
             <div>
-              <h2 className="font-bold text-lg text-white text-center">
+              <h2 className="font-bold text-lg text-center text-white">
                 {meal.name}
               </h2>
-              <p className="text-white text-center">{meal.category}</p>
+              <p className="text-center text-white">{meal.category}</p>
               {meal.imageUrl && (
                 <img
                   src={meal.imageUrl}
                   alt={meal.name}
-                  className="w-full h-72 rounded-md mt-2"
+                  className="w-full h-72 rounded-md mt-2 object-cover"
                 />
               )}
             </div>
             <div className="flex justify-center mt-4">
               <button
                 onClick={() => handleViewDetails(meal._id)}
-                className="px-4 py-2 bg-slate-500 text-white rounded hover:bg-slate-600"
+                className="px-4 py-2 bg-slate-500 text-white rounded hover:bg-slate-600 object-contain"
               >
-                Ver instrucciones
+                See instructions
               </button>
             </div>
           </div>
         ))}
       </div>
 
+      {/* Controles de paginación */}
+      <div className="flex justify-between mt-4 text-white">
+        <button
+          onClick={handlePreviousPage}
+          disabled={page === 1}
+          className={`px-4 py-2 rounded ${
+            page === 1
+              ? "bg-blue-200 cursor-not-allowed"
+              : "bg-blue-500 hover:bg-blue-600"
+          }`}
+        >
+          Previous Page
+        </button>
+        <span className="text-white">
+          Página {page} de {Math.ceil(totalMeals / limit)}
+        </span>
+        <button
+          onClick={handleNextPage}
+          disabled={page >= Math.ceil(totalMeals / limit)}
+          className={`px-4 py-2 rounded ${
+            page >= Math.ceil(totalMeals / limit)
+              ? "bg-blue-200 cursor-not-allowed"
+              : "bg-blue-500 hover:bg-blue-600"
+          }`}
+        >
+          Next Page
+        </button>
+      </div>
+
+      {/* Modal */}
       {isModalOpen && selectedMeal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
           <div className="bg-slate-500 rounded-lg p-6 w-full max-w-2xl text-center relative">
@@ -83,11 +129,13 @@ export const HomeComponent = () => {
             </h2>
             <p className="text-white">{selectedMeal.category}</p>
             {selectedMeal.imageUrl && (
-              <img
-                src={selectedMeal.imageUrl}
-                alt={selectedMeal.name}
-                className="w-full h-48 object-contain mt-4"
-              />
+              <div className="mt-4 flex justify-center">
+                <img
+                  src={selectedMeal.imageUrl}
+                  alt={selectedMeal.name}
+                  className="max-w-full max-h-64 object-contain"
+                />
+              </div>
             )}
             <p className="mt-4 text-white text-left">
               {selectedMeal.description}

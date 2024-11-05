@@ -10,6 +10,6 @@ export const getAllMeals = async (page = 1, limit = 12) => {
     const { data, totalMeals } = response.data;
     return { meals: data, totalMeals };
   } catch (error: any) {
-    throw new Error(error);
+    return error.response?.data?.message;
   }
 };

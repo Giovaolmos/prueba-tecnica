@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { login } from "../../herlpers/user/login";
 
 export const LoginForm = () => {
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("hello");
+    setError("");
+
+    const email = (e.currentTarget.elements[0] as HTMLInputElement).value;
+    const password = (e.currentTarget.elements[1] as HTMLInputElement).value;
+
+    try {
+      const result = await login(email, password);
+      if (!result) {
+        setError(result.message || "Error en el inicio de sesión.");
+      } else {
+        localStorage.setItem("token", result.token);
+        navigate("/");
+      }
+    } catch (error) {
+      setError("Error en el inicio de sesión. Por favor, intenta nuevamente.");
+    }
   };
 
   return (
@@ -12,6 +32,7 @@ export const LoginForm = () => {
         <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-200">
           Login Form
         </h1>
+        {error && <p className="text-red-500">{error}</p>}{" "}
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label

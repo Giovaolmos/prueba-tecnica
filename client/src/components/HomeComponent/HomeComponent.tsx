@@ -3,11 +3,14 @@ import { IMeals } from "../../interfaces/meals";
 import { getAllMeals } from "../../herlpers/meals/getAllMeals";
 import { getMealById } from "../../herlpers/meals/getMealById";
 import { deleteMeal } from "../../herlpers/meals/deleteMeal"; // Importa la función deleteMeal
+import { updateMeal } from "../../herlpers/meals/updateMeal"; // Importa la función updateMeal
 
 export const HomeComponent = () => {
   const [meals, setMeals] = useState<IMeals[]>([]);
   const [selectedMeal, setSelectedMeal] = useState<IMeals | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [updateMealData, setUpdateMealData] = useState<Partial<IMeals>>({});
   const [page, setPage] = useState(1);
   const [totalMeals, setTotalMeals] = useState(0);
   const limit = 12;
@@ -44,14 +47,52 @@ export const HomeComponent = () => {
         await deleteMeal(id);
         setMeals((prevMeals) => prevMeals.filter((meal) => meal._id !== id));
       } catch (error) {
-        console.error("Error al eliminar la comida:", error);
+        console.error("Error trying delete.", error);
       }
+    }
+  };
+
+  const handleUpdate = (meal: IMeals) => {
+    setSelectedMeal(meal);
+    setUpdateMealData({
+      name: meal.name,
+      description: meal.description,
+      imageUrl: meal.imageUrl,
+      category: meal.category,
+    });
+    setIsUpdateModalOpen(true);
+  };
+  const handleUpdateChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setUpdateMealData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleUpdateSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedMeal) {
+      console.error("No se ha seleccionado ninguna comida para actualizar.");
+      return;
+    }
+    try {
+      const updatedMeal = await updateMeal(selectedMeal._id, updateMealData);
+      setMeals((prevMeals) =>
+        prevMeals.map((meal) =>
+          meal._id === updatedMeal._id ? updatedMeal : meal,
+        ),
+      );
+      setIsUpdateModalOpen(false);
+    } catch (error) {
+      console.error("Error al actualizar la comida:", error);
     }
   };
 
   const closeModal = () => {
     setSelectedMeal(null);
     setIsModalOpen(false);
+    setUpdateMealData({});
+    setIsUpdateModalOpen(false);
   };
 
   const handleNextPage = () => {
@@ -92,13 +133,19 @@ export const HomeComponent = () => {
             </div>
             <div className="flex justify-between mt-4">
               <button
+                onClick={() => handleUpdate(meal)}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+              >
+                Actualizar
+              </button>
+              <button
                 onClick={() => handleViewDetails(meal._id)}
                 className="px-4 py-2 bg-slate-500 text-white rounded hover:bg-slate-600"
               >
-                See instructions
+                Ver instrucciones
               </button>
               <button
-                onClick={() => handleDelete(meal._id)} // Llama a handleDelete al hacer clic
+                onClick={() => handleDelete(meal._id)}
                 className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
               >
                 Eliminar
@@ -118,7 +165,7 @@ export const HomeComponent = () => {
               : "bg-slate-800 hover:bg-slate-700"
           }`}
         >
-          Previous Page
+          Página Anterior
         </button>
         <span className="text-white">
           Página {page} de {Math.ceil(totalMeals / limit)}
@@ -132,7 +179,7 @@ export const HomeComponent = () => {
               : "bg-slate-800 hover:bg-slate-700"
           }`}
         >
-          Next Page
+          Página Siguiente
         </button>
       </div>
 
@@ -161,6 +208,59 @@ export const HomeComponent = () => {
             <p className="mt-4 text-white text-left">
               {selectedMeal.description}
             </p>
+          </div>
+        </div>
+      )}
+
+      {isUpdateModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
+          <div className="bg-slate-500 rounded-lg p-6 w-full max-w-2xl text-center relative">
+            <button
+              onClick={() => setIsUpdateModalOpen(false)}
+              className="absolute top-2 right-2 text-white hover:text-black"
+            >
+              X
+            </button>
+            <h2 className="font-bold text-lg text-white">Actualizar Comida</h2>
+            <form onSubmit={handleUpdateSubmit} className="mt-4">
+              <input
+                type="text"
+                name="name"
+                placeholder="Nombre"
+                value={updateMealData.name}
+                onChange={handleUpdateChange}
+                className="w-full p-2 mb-2"
+              />
+              <textarea
+                name="description"
+                placeholder="Descripción"
+                value={updateMealData.description}
+                onChange={handleUpdateChange}
+                className="w-full p-2 mb-2"
+              />
+              <input
+                type="text"
+                name="imageUrl"
+                placeholder="URL de la imagen"
+                value={updateMealData.imageUrl}
+                onChange={handleUpdateChange}
+                className="w-full p-2 mb-2"
+              />
+              <input
+                type="text"
+                name="category"
+                placeholder="Categoría"
+                value={updateMealData.category}
+                onChange={handleUpdateChange}
+                className="w-full p-2 mb-2"
+              />
+              <button
+                type="submit"
+                className="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-700"
+              >
+                Guardar Cambios
+              </button>
+            </form>
           </div>
         </div>
       )}

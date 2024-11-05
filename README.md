@@ -39,7 +39,10 @@ Las tecnologías que utilicé para este proyecto fueron:
 
 ## Instrucciones para iniciar el proyecto:
 
+
 1. **Clonar el repositorio y abrir el proyecto en VS**
+
+   Abre una terminal en donde quieras clonar el repositorio y ejecuta los siguientes comandos:
  ```bash
    git clone <url-del-repositorio>
    cd <nombre-del-repositorio>

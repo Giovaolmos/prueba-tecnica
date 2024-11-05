@@ -35,8 +35,7 @@ Las tecnologías que utilicé para este proyecto fueron:
 - Acceso al **Home**, donde podrá visualizar sus comidas y recetas.
 
 ### Como usuario administrador:
-- Acceso al formulario para agregar nuevas comidas.
-- Permiso para editar o eliminar comidas existentes.
+- Permiso para agregar, editar o eliminar comidas existentes.
 
 ## Instrucciones para iniciar el proyecto:
 

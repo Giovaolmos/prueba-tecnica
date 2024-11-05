@@ -20,7 +20,7 @@ export const LandingComponent: React.FC = () => {
         </p>
         <button
           onClick={handleLogin}
-          className="px-6 py-3 font-semibold bg-slate-500 text-white rounded hover:bg-slate-600 object-contain"
+          className="px-6 py-3 font-semibold bg-slate-800 text-white rounded hover:bg-slate-700 object-contain"
         >
           Log in to view recipes
         </button>

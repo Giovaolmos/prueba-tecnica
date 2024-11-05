@@ -10,13 +10,6 @@ export const loginUserController = async (
     const result = await loginUserService(loginData);
     res.status(200).json(result);
   } catch (error) {
-    if (error.message === "Email y/o contraseña incorrectos.") {
-      res.status(400).json({ message: error.message });
-    } else {
-      res.status(500).json({
-        message: "Hubo un error inesperado al intentar iniciar sesión",
-        error: error instanceof Error ? error.message : error,
-      });
-    }
+    res.status(401).json({ message: "Credenciales incorrectas." });
   }
 };

@@ -8,17 +8,15 @@ export const loginUserService = async (loginData: userLoginDto) => {
 
   const userDB = await Users.findOne({ email });
   if (!userDB) {
-    throw new Error("Email y/o contraseña incorrectos.");
+    throw new Error("Credenciales incorrectas.");
   }
-
   const bytes = CryptoJS.AES.decrypt(
     userDB.password,
     process.env.SECRET_KEY as string,
   );
   const decryptedPassword = bytes.toString(CryptoJS.enc.Utf8);
-
   if (decryptedPassword !== password) {
-    throw new Error("Email y/o contraseña incorrectos.");
+    throw new Error("Credenciales incorrectas.");
   }
 
   const token = jwt.sign(

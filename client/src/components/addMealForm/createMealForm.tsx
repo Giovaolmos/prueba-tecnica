@@ -1,6 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { createMeals } from "../../herlpers/meals/createMeal";
+import { jwtDecode } from "jwt-decode";
+
+interface DecodedToken {
+  userId: string;
+  isAdmin: boolean;
+  iat: number;
+  exp: number;
+}
 
 export const AddMealForm = () => {
   const [name, setName] = useState("");
@@ -9,6 +17,24 @@ export const AddMealForm = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    try {
+      const decodedToken = jwtDecode<DecodedToken>(token);
+      if (!decodedToken.isAdmin) {
+        navigate("/home");
+      }
+    } catch (error) {
+      console.error("Error al decodificar el token:", error);
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

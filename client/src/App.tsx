@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { NavBar } from "./components/navbar/NavBar";
 import { Login } from "./views/Login/Login";
 import { Home } from "./views/Home/Home";
@@ -7,9 +7,12 @@ import { Landing } from "./views/Landing/Landing";
 import { AddMeal } from "./views/AddMeal/addMeal";
 
 function App() {
+  const location = useLocation(); // Obtener la ubicación actual
+
   return (
     <div>
-      <NavBar />
+      {location.pathname !== "/" && <NavBar />}
+
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />

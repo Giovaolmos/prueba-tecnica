@@ -29,6 +29,14 @@ export const NavBar: React.FC = () => {
                   SignUp
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/add-meal"
+                  className="text-white hover:text-slate-300"
+                >
+                  Add Meal
+                </Link>
+              </li>
             </ul>
           </div>
           <button
@@ -56,6 +64,11 @@ export const NavBar: React.FC = () => {
             <li>
               <Link to="/register" className="text-white hover:text-slate-300">
                 SignUp
+              </Link>
+            </li>
+            <li>
+              <Link to="/add-meal" className="text-white hover:text-slate-300">
+                Add Meal
               </Link>
             </li>
           </ul>

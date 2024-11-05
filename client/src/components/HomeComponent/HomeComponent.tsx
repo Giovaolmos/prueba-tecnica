@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { IMeals } from "../../interfaces/meals";
 import { getAllMeals } from "../../herlpers/meals/getAllMeals";
 import { getMealById } from "../../herlpers/meals/getMealById";
-import { deleteMeal } from "../../herlpers/meals/deleteMeal"; // Importa la función deleteMeal
-import { updateMeal } from "../../herlpers/meals/updateMeal"; // Importa la función updateMeal
+import { deleteMeal } from "../../herlpers/meals/deleteMeal";
+import { updateMeal } from "../../herlpers/meals/updateMeal";
 
 export const HomeComponent = () => {
   const [meals, setMeals] = useState<IMeals[]>([]);

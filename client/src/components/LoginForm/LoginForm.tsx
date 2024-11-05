@@ -19,7 +19,8 @@ export const LoginForm = () => {
         setError(message);
       } else {
         localStorage.setItem("token", result.token);
-        navigate("/");
+        console.log("Token guardado:", result.token);
+        navigate("/home");
       }
     } catch (error) {
       console.error("Error en el inicio de sesión:", error);

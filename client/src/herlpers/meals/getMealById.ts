@@ -6,6 +6,6 @@ export const getMealById = async (id: string) => {
     const response = await axios.get(`${URL_MEALS}/${id}`);
     return response.data;
   } catch (error: any) {
-    return error;
+    return error.response?.data?.message;
   }
 };

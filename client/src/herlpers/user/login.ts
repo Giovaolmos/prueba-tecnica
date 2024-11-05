@@ -13,8 +13,7 @@ export const login = async (email: string, password: string) => {
   } catch (error: any) {
     return {
       message:
-        error.response?.data?.message ||
-        "Error en el inicio de sesión. Por favor, intenta nuevamente.",
+        error.response?.data?.message || "Error trying signin. Try again.",
     };
   }
 };

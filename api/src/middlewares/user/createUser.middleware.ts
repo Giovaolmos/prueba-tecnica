@@ -24,7 +24,7 @@ export const validateUserData = (
 
   if (createUser.password !== createUser.confirmPassword) {
     res.status(400).json({
-      message: "La contraseña y su confirmación no coinciden.",
+      message: "Password and confirmPassword do not match",
     });
     return;
   }

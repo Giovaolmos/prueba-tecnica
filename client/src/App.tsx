@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { NavBar } from "./components/navbar/NavBar";
 import { Login } from "./views/Login/Login";
 import { Home } from "./views/Home/Home";
+import { Register } from "./views/Register/Register";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </div>
   );

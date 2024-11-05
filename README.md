@@ -32,7 +32,7 @@ Las tecnologías que utilicé para este proyecto fueron:
 - Solo tiene acceso a la landing page, inicio de sesión y registro.
 
 ### Como usuario autenticado:
-- Acceso al **Home**, donde podrá visualizar sus comidas y recetas.
+- Acceso al **Home**, donde se mostrarán las comidas con posibilidad de ver en detalle sus instrucciones.
 
 ### Como usuario administrador:
 - Permiso para agregar, editar o eliminar comidas existentes.

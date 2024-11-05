@@ -53,7 +53,9 @@ export const HomeComponent = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-4">Meals list</h1>
+      <h1 className="text-4xl font-bold mb-4 text-center text-slate-700">
+        MEALS LIST
+      </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {meals.map((meal) => (
           <div
@@ -69,7 +71,7 @@ export const HomeComponent = () => {
                 <img
                   src={meal.imageUrl}
                   alt={meal.name}
-                  className="w-full h-72 rounded-md mt-2 object-cover"
+                  className="w-full h-auto  rounded-md mt-2 object-cover"
                 />
               )}
             </div>

@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../herlpers/user/login";
+import { useAuth } from "../../herlpers/user/authContext";
 
 export const LoginForm = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { login: authLogin } = useAuth();
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
@@ -18,7 +21,7 @@ export const LoginForm = () => {
         const message = result.message || "Error en el inicio de sesión.";
         setError(message);
       } else {
-        localStorage.setItem("token", result.token);
+        authLogin(result.token);
         console.log("Token guardado:", result.token);
         navigate("/home");
       }

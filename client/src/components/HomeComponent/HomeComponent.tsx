@@ -4,6 +4,7 @@ import { getAllMeals } from "../../herlpers/meals/getAllMeals";
 import { getMealById } from "../../herlpers/meals/getMealById";
 import { deleteMeal } from "../../herlpers/meals/deleteMeal";
 import { updateMeal } from "../../herlpers/meals/updateMeal";
+import { useAuth } from "../../herlpers/user/authContext";
 
 export const HomeComponent = () => {
   const [meals, setMeals] = useState<IMeals[]>([]);
@@ -14,6 +15,7 @@ export const HomeComponent = () => {
   const [page, setPage] = useState(1);
   const [totalMeals, setTotalMeals] = useState(0);
   const limit = 12;
+  const { isAdmin } = useAuth();
 
   useEffect(() => {
     const fetchMeals = async () => {
@@ -132,24 +134,28 @@ export const HomeComponent = () => {
               )}
             </div>
             <div className="flex justify-between mt-4">
-              <button
-                onClick={() => handleUpdate(meal)}
-                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-              >
-                Actualizar
-              </button>
+              {isAdmin && (
+                <button
+                  onClick={() => handleUpdate(meal)}
+                  className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                >
+                  Actualizar
+                </button>
+              )}
               <button
                 onClick={() => handleViewDetails(meal._id)}
                 className="px-4 py-2 bg-slate-500 text-white rounded hover:bg-slate-600"
               >
                 Ver instrucciones
               </button>
-              <button
-                onClick={() => handleDelete(meal._id)}
-                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
-              >
-                Eliminar
-              </button>
+              {isAdmin && (
+                <button
+                  onClick={() => handleDelete(meal._id)}
+                  className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+                >
+                  Eliminar
+                </button>
+              )}
             </div>
           </div>
         ))}

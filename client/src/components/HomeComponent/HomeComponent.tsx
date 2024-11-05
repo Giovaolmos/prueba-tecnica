@@ -122,7 +122,7 @@ export const HomeComponent = () => {
           <div className="bg-slate-500 rounded-lg p-6 w-full max-w-2xl text-center relative">
             <button
               onClick={closeModal}
-              className="absolute top-2 right-2 text-gray-900 hover:text-black"
+              className="absolute top-2 right-2 text-white hover:text-black"
             >
               X
             </button>

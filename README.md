@@ -116,6 +116,8 @@ El front estará disponible en http://localhost:5173 (o el puerto que indique Vi
 
 El back estará disponible en http://localhost:3000 (o el puerto que indique la persona).
 
+Documentación disponible en Swagger: http://localhost:3000/api-docs/
+
 ## Instrucciones para iniciar sesión como administrador
 
 Para probar las funcionalidades de administrador, se precarga un usuario administrador con las siguientes credenciales:

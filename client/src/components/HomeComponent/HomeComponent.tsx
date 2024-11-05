@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { IMeals } from "../../interfaces/meals";
 import { getAllMeals } from "../../herlpers/meals/getAllMeals";
 import { getMealById } from "../../herlpers/meals/getMealById";
+import { deleteMeal } from "../../herlpers/meals/deleteMeal"; // Importa la función deleteMeal
 
 export const HomeComponent = () => {
   const [meals, setMeals] = useState<IMeals[]>([]);
@@ -34,6 +35,20 @@ export const HomeComponent = () => {
     }
   };
 
+  const handleDelete = async (id: string) => {
+    const confirmation = window.confirm(
+      "¿Estás seguro de que deseas eliminar esta comida?",
+    );
+    if (confirmation) {
+      try {
+        await deleteMeal(id);
+        setMeals((prevMeals) => prevMeals.filter((meal) => meal._id !== id));
+      } catch (error) {
+        console.error("Error al eliminar la comida:", error);
+      }
+    }
+  };
+
   const closeModal = () => {
     setSelectedMeal(null);
     setIsModalOpen(false);
@@ -52,7 +67,7 @@ export const HomeComponent = () => {
   };
 
   return (
-    <div className="min-h-screen  container mx-auto p-4">
+    <div className="min-h-screen container mx-auto p-4">
       <h1 className="text-4xl font-bold mb-4 text-center text-slate-700">
         MEALS LIST
       </h1>
@@ -71,16 +86,22 @@ export const HomeComponent = () => {
                 <img
                   src={meal.imageUrl}
                   alt={meal.name}
-                  className="w-full h-auto  rounded-md mt-2 object-cover"
+                  className="w-full h-auto rounded-md mt-2 object-cover"
                 />
               )}
             </div>
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-between mt-4">
               <button
                 onClick={() => handleViewDetails(meal._id)}
-                className="px-4 py-2 bg-slate-500 text-white rounded hover:bg-slate-600 object-contain"
+                className="px-4 py-2 bg-slate-500 text-white rounded hover:bg-slate-600"
               >
                 See instructions
+              </button>
+              <button
+                onClick={() => handleDelete(meal._id)} // Llama a handleDelete al hacer clic
+                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+              >
+                Eliminar
               </button>
             </div>
           </div>

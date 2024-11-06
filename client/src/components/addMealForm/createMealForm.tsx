@@ -54,7 +54,7 @@ export const AddMealForm = () => {
     <div className="min-h-screen bg-gradient-to-t from-blue-500 to-blue-300 flex items-center justify-center w-full">
       <div className="bg-white dark:bg-slate-800 shadow-md rounded-lg px-8 py-6 max-w-md">
         <h1 className="text-2xl font-bold text-center mb-4 dark:text-gray-200">
-          Agregar Nueva Comida
+          Add meal
         </h1>
         {message && (
           <p

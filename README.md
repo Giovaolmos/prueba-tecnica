@@ -39,7 +39,7 @@ Las tecnologías que utilicé para este proyecto fueron:
 
 ## Requerimientos de Node.js
 
-Este proyecto fue desarrollado bajo la versión **21.7.0** de Node.js o versiones posteriores. Es necesario tener una de estas versiones instaladas, ya que incorporan la funcionalidad para importar variables de entorno a través de:
+Este proyecto fue desarrollado bajo la versión **21.7.0** de Node.js. Es necesario tener una de estas versiones instaladas, ya que incorporan la funcionalidad para importar variables de entorno a través de:
 
 ```javascript
 process.loadEnvFile();
